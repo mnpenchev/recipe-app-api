@@ -11,12 +11,25 @@ class BaseRecipeAttrViewSet(viewsets.GenericViewSet,
                             mixins.ListModelMixin,
                             mixins.CreateModelMixin):
     """ Base viewset for user owned recipe attributes """
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
-        return self.queryset.filter(user=self.request.user).order_by('-name')
+        assigned_only = bool(
+            int(self.request.query_params.get('assigned_only', 0))
+            # assign_only = 0 or 1, query_param has no concept for type so
+            # has to be converted to int first the to bool because if passed
+            # str with 0 in int to bool ass_only will be True
+            # set default value as 0 - False
+        )
+        queryset = self.queryset
+        if assigned_only:
+            queryset = queryset.filter(recipe__isnull=False)
+
+        return queryset.filter(
+            user=self.request.user
+        ).order_by('-name').distinct()
 
     def perform_create(self, serializer):
         """ Create a new tag"""
