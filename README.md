@@ -1,4 +1,4 @@
-API for a cooking recipes app with following features: Create and update user profile, Create recipes with description and picture, Login and authentication, Posting status updates, viewing profiles and updates.
+API for a cooking recipes site with following features: Create and update user profile, Create recipes with description and picture, Login and authentication, Posting status updates, viewing profiles and updates.
 
 
 Installation
