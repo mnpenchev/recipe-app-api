@@ -5,6 +5,6 @@ Installation
 
 Pull the repo and run: docker-compose build
 
-Start the server: docker-compose up
+Start/Stop the server: docker-compose up/down
 
 Run the tests: docker-compose run --rm app sh -c "python manage.py test"
