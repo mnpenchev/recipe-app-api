@@ -3,14 +3,8 @@ API for a cooking recipes app with following features: Create and update user pr
 
 Installation
 
-Pull the repo ad run:
+Pull the repo and run: docker-compose build
 
-docker-compose build
+Start the server: docker-compose up
 
-Start the server with:
-
-docker-compose up
-
-Run the tests with:
-
-docker-compose run --rm app sh -c "python manage.py test"
+Run the tests: docker-compose run --rm app sh -c "python manage.py test"
